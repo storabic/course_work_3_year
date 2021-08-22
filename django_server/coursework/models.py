@@ -19,7 +19,7 @@ class Client(models.Model):
 # Изменять параметр is_active может только создатель группы (см. creator)
 class Pool(models.Model):
     group = models.OneToOneField(Group, on_delete=models.CASCADE)
-    pool_id = models.CharField(default=None, editable=False, unique=True, max_length=6)
+    pool_token = models.CharField(default=None, editable=False, unique=True, max_length=6)
     is_active = models.BooleanField(default=True)
     creator = models.ForeignKey(Client, on_delete=models.PROTECT, editable=False)
     comment = models.CharField(max_length=400)
