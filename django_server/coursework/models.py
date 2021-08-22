@@ -10,7 +10,7 @@ def get_image_path(instance, filename):
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    uid = models.UUIDField(default=None, editable=False, unique=True)
+    user_token = models.CharField(default=None, editable=False, unique=True, max_length=6)
 
 
 # Группа пользователей по одному сбору денег
@@ -19,7 +19,7 @@ class Client(models.Model):
 # Изменять параметр is_active может только создатель группы (см. creator)
 class Pool(models.Model):
     group = models.OneToOneField(Group, on_delete=models.CASCADE)
-    pid = models.UUIDField(primary_key=True, default=None, editable=False, unique=True)
+    pool_id = models.CharField(default=None, editable=False, unique=True, max_length=6)
     is_active = models.BooleanField(default=True)
     creator = models.ForeignKey(Client, on_delete=models.PROTECT, editable=False)
     comment = models.CharField(max_length=400)
