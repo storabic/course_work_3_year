@@ -63,6 +63,8 @@ public class KeyPicker extends DialogFragment {
      */
     private final long clientId;
 
+    private String login;
+
     /**
      * MainActivity context
      */
@@ -74,9 +76,10 @@ public class KeyPicker extends DialogFragment {
      * @param clientId client id
      * @param context  context
      */
-    KeyPicker(long clientId, Context context) {
+    KeyPicker(long clientId, Context context, String login) {
         this.clientId = clientId;
         this.context = context;
+        this.login = login;
     }
 
     /**
@@ -118,77 +121,76 @@ public class KeyPicker extends DialogFragment {
         charPicker5.setMaxValue(alphabet.length - 1);
         charPicker5.setDisplayedValues(alphabet);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.DialogBW);
-        builder.setTitle("Выберите ключ игры или присоединитесь к случайной");
+        builder.setTitle("Введите токен группы, к которой хотите присоединиться");
         builder.setView(root);
-        builder.setPositiveButton(R.string.join, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String result = alphabet[charPicker0.getValue()] + alphabet[charPicker1.getValue()]
-                        + alphabet[charPicker2.getValue()] + alphabet[charPicker3.getValue()];
-                JSONObject jsonObjectWithBody = new JSONObject();
+        builder.setPositiveButton(R.string.join, (dialog, which) -> {
+            String result = alphabet[charPicker0.getValue()] + alphabet[charPicker1.getValue()]
+                    + alphabet[charPicker2.getValue()] + alphabet[charPicker3.getValue()] +
+                    alphabet[charPicker4.getValue()] + alphabet[charPicker5.getValue()];
+            JSONObject jsonObjectWithBody = new JSONObject();
+            try {
+                jsonObjectWithBody.put("client_id", clientId);
+                jsonObjectWithBody.put("pool_token", result);
+            } catch (JSONException e) {
+                Log.d("Can't make request:", e.toString());
+            }
+
+            final String requestBody = jsonObjectWithBody.toString();
+
+            RequestQueue queue = Volley.newRequestQueue(context);
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT,
+                    getString(R.string.url) + "join_pool",
+                    null, response -> {
                 try {
-                    jsonObjectWithBody.put("name", clientId);
-                    jsonObjectWithBody.put("key", result);
+                    long key = response.getLong("pool_id");
+                    Intent intent_redirectToGame =
+                            new Intent(context, GroupMainActivity.class).
+                                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT).
+                                    putExtra("client_name", login).
+                                    putExtra("client_id", clientId)
+                                    .putExtra("group_id", key);
+                    context.startActivity(intent_redirectToGame);
                 } catch (JSONException e) {
-                    Log.d("Can't make request:", e.toString());
+                    Log.d("Error", e.toString());
+                    Toast toast = Toast.makeText(context,
+                            context.getString(R.string.name),
+                            Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            }, error -> {
+                String ans;
+                if (error.networkResponse.statusCode == 400) {
+                    ans = "Нет группы с таким токеном";
+                } else {
+                    ans = context.getString(R.string.problem);
+                }
+                try {
+                    Toast toast = Toast.makeText(getContext(),
+                            ans,
+                            Toast.LENGTH_LONG);
+                    toast.show();
+                } catch (Exception ignored) {
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    headers.put("Content-Type", "application/json");
+                    return headers;
                 }
 
-                final String requestBody = jsonObjectWithBody.toString();
+                @Override
+                public byte[] getBody() {
+                    try {
+                        return requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        Log.d("Error", "UTF-8 encoding error");
+                        return null;
+                    }
+                }
+            };
+            queue.add(jsonObjectRequest);
 
-                RequestQueue queue = Volley.newRequestQueue(context);
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT,
-                        getString(R.string.url) + "join_lobby",
-                        null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String gameKey = response.getString("key");
-                            Intent intent_redirectToGame =
-                                    new Intent(context, LoginActivity.class).
-                                            addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT).
-                                            putExtra("GAME_ID", gameKey).
-                                            putExtra("NAME",clientId);
-                            context.startActivity(intent_redirectToGame);
-                        } catch (JSONException e) {
-                            Log.d("Error", e.toString());
-                            Toast toast = Toast.makeText(context,
-                                    context.getString(R.string.name),
-                                    Toast.LENGTH_LONG);
-                            toast.show();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        try {
-                            Toast toast = Toast.makeText(getContext(),
-                                    getString(R.string.problem),
-                                    Toast.LENGTH_LONG);
-                            toast.show();
-                        } catch (Exception ignored) {
-                        }
-                    }
-                }) {
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        HashMap<String, String> headers = new HashMap<String, String>();
-                        headers.put("Content-Type", "application/json");
-                        return headers;
-                    }
-
-                    @Override
-                    public byte[] getBody() {
-                        try {
-                            return requestBody.getBytes("utf-8");
-                        } catch (UnsupportedEncodingException uee) {
-                            Log.d("Error", "UTF-8 encoding error");
-                            return null;
-                        }
-                    }
-                };
-                queue.add(jsonObjectRequest);
-
-            }
         });
         builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
         });

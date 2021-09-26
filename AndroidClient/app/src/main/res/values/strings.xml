@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidClient</string>
+    <string name="app_name">PayTogether</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Логин/почта</string>
     <string name="prompt_password">Пароль</string>
@@ -9,9 +9,9 @@
     <string name="invalid_username">Невалидное имя пользователя</string>
     <string name="invalid_password">Пароль должен содержать от 6 символов</string>
     <string name="login_failed">"Вход в аккаунт не удался"</string>
-    <string name="url">http://192.168.43.73:8000/api/</string>
+    <string name="url">http://10.0.2.2:8000/</string>
     <string name="join">"Присоединиться"</string>
     <string name="name">"Логин"</string>
-    <string name="problem">"Небольшие проблемы с доступом к серверу. Попробуйте чуть позже."</string>
+    <string name="problem">"Наблюдаются проблемы с доступом к серверу. Попробуйте чуть позже."</string>
     <string name="cancel">"Закрыть"</string>
 </resources>

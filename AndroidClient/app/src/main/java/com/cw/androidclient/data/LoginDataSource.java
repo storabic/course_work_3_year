@@ -16,12 +16,21 @@ public class LoginDataSource {
         switch (username) {
             case "daniilivanov82@gmail.com":
                 user = new LoggedInUser(1L, "daniilivanov82@gmail.com");
+                if (!password.equals("vafavafa")) {
+                    return new Result.Error(new IOException("Error logging in"));
+                }
                 break;
             case "storabic@yandex.ru":
                 user = new LoggedInUser(2L, "storabic@yandex.ru");
+                if (!password.equals("vafavafa")) {
+                    return new Result.Error(new IOException("Error logging in"));
+                }
                 break;
             case "randomuser":
                 user = new LoggedInUser(3L, "randomuser");
+                if (!password.equals("123456")) {
+                    return new Result.Error(new IOException("Error logging in"));
+                }
                 break;
             default:
                 return new Result.Error(new IOException("Error logging in"));

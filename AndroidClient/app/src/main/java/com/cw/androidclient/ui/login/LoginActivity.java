@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -28,6 +29,8 @@ import com.cw.androidclient.R;
 import com.cw.androidclient.ui.login.LoginViewModel;
 import com.cw.androidclient.ui.login.LoginViewModelFactory;
 import com.cw.androidclient.databinding.ActivityLoginBinding;
+import com.flurry.android.FlurryAgent;
+import com.flurry.android.FlurryPerformance;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,6 +48,14 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+
+        new FlurryAgent.Builder()
+                .withDataSaleOptOut(false) //CCPA - the default value is false
+                .withCaptureUncaughtExceptions(true)
+                .withIncludeBackgroundSessionsInMetrics(true)
+                .withLogLevel(Log.VERBOSE)
+                .withPerformanceMetrics(FlurryPerformance.ALL)
+                .build(this, "9RFRVSXCW4WPC56CTND8");
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
@@ -116,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.login(usernameEditText.getText().toString().trim(),
                     passwordEditText.getText().toString());
         });
+        int x = 4;
     }
 
     private void updateUiWithUser(LoggedInUserView model) {

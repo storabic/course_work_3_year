@@ -1,0 +1,586 @@
+@startuml
+
+title __LOGIN's Class Diagram__\n
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.Client {
+          {static} + CREATOR : Creator<Client>
+          - clientId : long
+          - closedDate : String
+          - comment : String
+          - login : String
+          - paymentId : long
+          - sum : double
+          + Client()
+          + Client()
+          + describeContents()
+          + getClientId()
+          + getClosedDate()
+          + getComment()
+          + getLogin()
+          + getPaymentId()
+          + getSum()
+          + setClosedDate()
+          + setComment()
+          + setPaymentId()
+          + setSum()
+          + writeToParcel()
+          # Client()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.ClientRecyclerAdapter {
+          - clients : List<Client>
+          - inflater : LayoutInflater
+          + ClientRecyclerAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.ClientRecyclerAdapter.ClientViewHolder {
+          - checkBox : CheckBox
+          - clientId : long
+          - login : TextView
+          + getClientId()
+          + isChecked()
+          + setClientId()
+          ~ ClientViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.CreateGroupActivity {
+          - clientId : long
+          - commentText : TextInputEditText
+          - context : Context
+          - groupId : long
+          - login : String
+          - nameText : TextInputEditText
+          # onCreate()
+          - sendCreateGroupRequest()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.EditGroupActivity {
+          - clientId : long
+          - commentText : TextInputEditText
+          - context : Context
+          - groupId : long
+          - login : String
+          - nameText : TextInputEditText
+          # onCreate()
+          - sendChangedGroup()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.ExpandableTextView {
+          {static} - DEFAULT_TRIM_LENGTH : int
+          {static} - ELLIPSIS : String
+          - bufferType : BufferType
+          - originalText : CharSequence
+          - trim : boolean
+          - trimLength : int
+          - trimmedText : CharSequence
+          + ExpandableTextView()
+          + ExpandableTextView()
+          + getOriginalText()
+          + getTrimLength()
+          + setText()
+          + setTrimLength()
+          - getDisplayableText()
+          - getTrimmedText()
+          - setText()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.Group {
+          - groupId : long
+          - name : String
+          - token : String
+          + Group()
+          + getGroupId()
+          + getName()
+          + getToken()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.GroupMainActivity {
+          - clientId : long
+          - context : Context
+          - groupId : long
+          - isActive : boolean
+          - login : String
+          - token : String
+          + onResume()
+          # onCreate()
+          - fillSubjects()
+          - initializeViews()
+          - sendGetGroupRequest()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.GroupRecyclerAdapter {
+          - groups : List<Group>
+          - inflater : LayoutInflater
+          + GroupRecyclerAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.GroupRecyclerAdapter.GroupViewHolder {
+          - name : TextView
+          - token : TextView
+          ~ GroupViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.KeyPicker {
+          ~ charPicker0 : NumberPicker
+          ~ charPicker1 : NumberPicker
+          ~ charPicker2 : NumberPicker
+          ~ charPicker3 : NumberPicker
+          ~ charPicker4 : NumberPicker
+          ~ charPicker5 : NumberPicker
+          - clientId : long
+          - context : Context
+          - login : String
+          + onCreateDialog()
+          ~ KeyPicker()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoggedInUserView {
+          - clientId : long
+          - displayName : String
+          + getClientId()
+          ~ LoggedInUserView()
+          ~ getDisplayName()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginActivity {
+          - context : Context
+          + onCreate()
+          - showLoginFailed()
+          - updateUiWithUser()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginFormState {
+          - isDataValid : boolean
+          - passwordError : Integer
+          - usernameError : Integer
+          ~ LoginFormState()
+          ~ LoginFormState()
+          ~ getPasswordError()
+          ~ getUsernameError()
+          ~ isDataValid()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginResult {
+          - error : Integer
+          ~ LoginResult()
+          ~ LoginResult()
+          ~ getError()
+          ~ getSuccess()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginViewModel {
+          - loginFormState : MutableLiveData<LoginFormState>
+          - loginResult : MutableLiveData<LoginResult>
+          + login()
+          + loginDataChanged()
+          ~ LoginViewModel()
+          ~ getLoginFormState()
+          ~ getLoginResult()
+          - isPasswordValid()
+          - isUserNameValid()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginViewModelFactory {
+          + create()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.MenuActivity {
+          - clientId : long
+          - context : Context
+          - login : String
+          + onResume()
+          # onCreate()
+          - getGroups()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.PaymentActivity {
+          - clientId : long
+          - context : Context
+          - creatorClientId : long
+          - isNotPaid : boolean
+          - isSubjectActive : boolean
+          - payerClientId : long
+          - payerlogin : String
+          - paymentId : long
+          + getSum()
+          # onCreate()
+          - getPayment()
+          - sendPayment()
+          - showElements()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.PaymentRecyclerAdapter {
+          - clients : List<Client>
+          - inflater : LayoutInflater
+          + PaymentRecyclerAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.PaymentRecyclerAdapter.ClientViewHolder {
+          - active : TextView
+          - clientId : long
+          - login : TextView
+          - paymentId : long
+          - sum : TextView
+          + getClientId()
+          + getPaymentId()
+          + setClientId()
+          + setPaymentId()
+          ~ ClientViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.RecyclerItemClickListener {
+          ~ mGestureDetector : GestureDetector
+          + RecyclerItemClickListener()
+          + onInterceptTouchEvent()
+          + onRequestDisallowInterceptTouchEvent()
+          + onTouchEvent()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      interface com.cw.androidclient.ui.login.RecyclerItemClickListener.OnItemClickListener {
+          {abstract} + onItemClick()
+          {abstract} + onLongItemClick()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.Subject {
+          - authorLogin : String
+          - comment : String
+          - isActive : boolean
+          - name : String
+          - subjectId : long
+          - totalSum : double
+          + Subject()
+          + getAuthorLogin()
+          + getComment()
+          + getName()
+          + getSubjectId()
+          + getTotalSum()
+          + isActive()
+          + setActive()
+          + setAuthorLogin()
+          + setComment()
+          + setName()
+          + setSubjectId()
+          + setTotalSum()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectActivity {
+          ~ payments : List<Client>
+          - clientId : long
+          - context : Context
+          - createSubjectCommentNameInputText : TextInputEditText
+          - createSubjectNameInputText : TextInputEditText
+          - createSubjectTotalSumInputText : TextInputEditText
+          - creatorClientId : long
+          - creatorLogin : String
+          - groupId : long
+          - isActive : boolean
+          - login : String
+          - recyclerView : RecyclerView
+          - subjectId : long
+          + onResume()
+          # onCreate()
+          - fillPayments()
+          - getSubjectRequest()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectCreateActivity {
+          ~ clients : ArrayList<Client>
+          - clientId : long
+          - context : Context
+          - createSubjectCommentNameInputText : TextInputEditText
+          - createSubjectNameInputText : TextInputEditText
+          - createSubjectTotalSumInputText : TextInputEditText
+          - equalSumSwitch : Switch
+          - groupId : long
+          - login : String
+          - recyclerView : RecyclerView
+          - subjectId : long
+          # onCreate()
+          - createSubjectEqualSum()
+          - fillClientRecycler()
+          - getClients()
+          - getEqualPayments()
+          - getSum()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectCreateDifferentSumActivity {
+          ~ recyclerView : RecyclerView
+          - clientId : long
+          - clientName : String
+          - commentName : String
+          - context : Context
+          - groupId : long
+          - subjectId : long
+          - subjectName : String
+          # onCreate()
+          - getPayments()
+          - sendCreateSubjectRequest()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectEditActivity {
+          - clientId : long
+          - commentText : TextInputEditText
+          - context : Context
+          - groupId : long
+          - login : String
+          - nameText : TextInputEditText
+          - subjectId : long
+          - switchh : Switch
+          # onCreate()
+          - sendChangedGroup()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectRecyclerAdapter {
+          - inflater : LayoutInflater
+          - subjects : List<Subject>
+          + SubjectRecyclerAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectRecyclerAdapter.SubjectViewHolder {
+          - authorLogin : TextView
+          - name : TextView
+          - totalSum : TextView
+          ~ SubjectViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.UserPayRecyclerAdapter {
+          - clients : List<Client>
+          - inflater : LayoutInflater
+          + UserPayRecyclerAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+          {static} + round()
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.UserPayRecyclerAdapter.ClientViewHolder {
+          - clientId : long
+          - inputEditText : TextInputEditText
+          - login : TextView
+          + getClientId()
+          + getSum()
+          + setClientId()
+          ~ ClientViewHolder()
+      }
+    }
+  }
+  
+
+  com.cw.androidclient.ui.login.Client .up.|> android.os.Parcelable
+  com.cw.androidclient.ui.login.Client .up.|> java.io.Serializable
+  com.cw.androidclient.ui.login.ClientRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.ClientRecyclerAdapter +-down- com.cw.androidclient.ui.login.ClientRecyclerAdapter.ClientViewHolder
+  com.cw.androidclient.ui.login.ClientRecyclerAdapter.ClientViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.cw.androidclient.ui.login.CreateGroupActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.EditGroupActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.ExpandableTextView -up-|> androidx.appcompat.widget.AppCompatTextView
+  com.cw.androidclient.ui.login.GroupMainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.GroupRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.GroupRecyclerAdapter +-down- com.cw.androidclient.ui.login.GroupRecyclerAdapter.GroupViewHolder
+  com.cw.androidclient.ui.login.GroupRecyclerAdapter.GroupViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.cw.androidclient.ui.login.KeyPicker -up-|> androidx.fragment.app.DialogFragment
+  com.cw.androidclient.ui.login.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.LoginActivity o-- com.cw.androidclient.databinding.ActivityLoginBinding : binding
+  com.cw.androidclient.ui.login.LoginActivity o-- com.cw.androidclient.ui.login.LoginViewModel : loginViewModel
+  com.cw.androidclient.ui.login.LoginResult o-- com.cw.androidclient.ui.login.LoggedInUserView : success
+  com.cw.androidclient.ui.login.LoginViewModel -up-|> androidx.lifecycle.ViewModel
+  com.cw.androidclient.ui.login.LoginViewModel o-- com.cw.androidclient.data.LoginRepository : loginRepository
+  com.cw.androidclient.ui.login.LoginViewModelFactory .up.|> androidx.lifecycle.ViewModelProvider.Factory
+  com.cw.androidclient.ui.login.MenuActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.PaymentActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.PaymentRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.PaymentRecyclerAdapter +-down- com.cw.androidclient.ui.login.PaymentRecyclerAdapter.ClientViewHolder
+  com.cw.androidclient.ui.login.PaymentRecyclerAdapter.ClientViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.cw.androidclient.ui.login.RecyclerItemClickListener .up.|> androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+  com.cw.androidclient.ui.login.RecyclerItemClickListener o-- com.cw.androidclient.ui.login.RecyclerItemClickListener.OnItemClickListener : mListener
+  com.cw.androidclient.ui.login.RecyclerItemClickListener +-down- com.cw.androidclient.ui.login.RecyclerItemClickListener.OnItemClickListener
+  com.cw.androidclient.ui.login.SubjectActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectCreateActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectCreateDifferentSumActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectCreateDifferentSumActivity o-- com.cw.androidclient.ui.login.UserPayRecyclerAdapter : recyclerAdapter
+  com.cw.androidclient.ui.login.SubjectEditActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.SubjectRecyclerAdapter +-down- com.cw.androidclient.ui.login.SubjectRecyclerAdapter.SubjectViewHolder
+  com.cw.androidclient.ui.login.SubjectRecyclerAdapter.SubjectViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.cw.androidclient.ui.login.UserPayRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.UserPayRecyclerAdapter +-down- com.cw.androidclient.ui.login.UserPayRecyclerAdapter.ClientViewHolder
+  com.cw.androidclient.ui.login.UserPayRecyclerAdapter.ClientViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

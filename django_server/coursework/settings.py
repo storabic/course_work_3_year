@@ -22,7 +22,7 @@ SECRET_KEY = 's=#52f0k1c$ziz3-+bj9w+1bfzpo78@o$nt@fy)+%rwz#c+iz2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '10.0.2.2']
 
 # Application definition
 
@@ -66,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Server.wsgi.application'
+WSGI_APPLICATION = 'coursework.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

@@ -1,0 +1,292 @@
+@startuml
+
+title __ANDROIDCLIENT.APP's Class Diagram__\n
+
+  namespace com.cw.androidclient {
+    class com.cw.androidclient.BuildConfig {
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace data {
+      class com.cw.androidclient.data.LoginDataSource {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace data {
+      class com.cw.androidclient.data.LoginRepository {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace data {
+      class com.cw.androidclient.data.Result {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace data {
+      namespace model {
+        class com.cw.androidclient.data.model.LoggedInUser {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.Client {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.ClientRecyclerAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.CreateGroupActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.EditGroupActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.ExpandableTextView {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.Group {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.GroupMainActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.GroupRecyclerAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.KeyPicker {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoggedInUserView {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginFormState {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginResult {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginViewModel {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.LoginViewModelFactory {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.MenuActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.PaymentActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.PaymentRecyclerAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.RecyclerItemClickListener {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.Subject {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectCreateActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectCreateDifferentSumActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectEditActivity {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.SubjectRecyclerAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.cw.androidclient {
+    namespace ui.login {
+      class com.cw.androidclient.ui.login.UserPayRecyclerAdapter {
+      }
+    }
+  }
+  
+
+  com.cw.androidclient.data.LoginRepository o-- com.cw.androidclient.data.LoginDataSource : dataSource
+  com.cw.androidclient.data.LoginRepository o-- com.cw.androidclient.data.model.LoggedInUser : user
+  com.cw.androidclient.ui.login.Client .up.|> android.os.Parcelable
+  com.cw.androidclient.ui.login.Client .up.|> java.io.Serializable
+  com.cw.androidclient.ui.login.ClientRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.CreateGroupActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.EditGroupActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.ExpandableTextView -up-|> androidx.appcompat.widget.AppCompatTextView
+  com.cw.androidclient.ui.login.GroupMainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.GroupRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.KeyPicker -up-|> androidx.fragment.app.DialogFragment
+  com.cw.androidclient.ui.login.LoginActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.LoginActivity o-- com.cw.androidclient.databinding.ActivityLoginBinding : binding
+  com.cw.androidclient.ui.login.LoginActivity o-- com.cw.androidclient.ui.login.LoginViewModel : loginViewModel
+  com.cw.androidclient.ui.login.LoginResult o-- com.cw.androidclient.ui.login.LoggedInUserView : success
+  com.cw.androidclient.ui.login.LoginViewModel -up-|> androidx.lifecycle.ViewModel
+  com.cw.androidclient.ui.login.LoginViewModel o-- com.cw.androidclient.data.LoginRepository : loginRepository
+  com.cw.androidclient.ui.login.LoginViewModelFactory .up.|> androidx.lifecycle.ViewModelProvider.Factory
+  com.cw.androidclient.ui.login.MenuActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.PaymentActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.PaymentRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.RecyclerItemClickListener .up.|> androidx.recyclerview.widget.RecyclerView.OnItemTouchListener
+  com.cw.androidclient.ui.login.RecyclerItemClickListener o-- com.cw.androidclient.ui.login.RecyclerItemClickListener.OnItemClickListener : mListener
+  com.cw.androidclient.ui.login.SubjectActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectCreateActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectCreateDifferentSumActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectCreateDifferentSumActivity o-- com.cw.androidclient.ui.login.UserPayRecyclerAdapter : recyclerAdapter
+  com.cw.androidclient.ui.login.SubjectEditActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.cw.androidclient.ui.login.SubjectRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.cw.androidclient.ui.login.UserPayRecyclerAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
